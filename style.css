@@ -1,0 +1,17 @@
+html {
+    box-sizing: border-box;
+}
+
+:root {
+    --column-1: #1C7CCC;
+    --column-2: #fc902c;
+    --column-3: #fff8af;
+    --column-4: #88b4a1;
+} 
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: url("https://images.unsplash.com/photo-1715604535941-3a38ad63bd79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MTU3MzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTc3OTYxOTd8&ixlib=rb-4.0.3&q=80&w=1080");
+    background-size: cover;
+}
