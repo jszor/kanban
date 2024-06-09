@@ -6,10 +6,10 @@ html {
 }
 
 :root {
-    --column-1: #4E5541;
-    --column-2: #fc902c;
-    --column-3: #fff8af;
-    --column-4: #88b4a1;
+    --column-1: #717665;
+    --column-2: #C19799;
+    --column-3: #9197A1;
+    --column-4: #CAB89D;
 } 
 
 body {
@@ -88,31 +88,32 @@ ul {
   /* Custom Scrollbar */
   .custom-scroll {
     overflow-y: auto;
-    max-height: 75vh;
+    max-height: 55vh;
   }
   
   .custom-scroll::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+    /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.25); */
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(203, 204, 205, 1);
     margin-right: 5px;
+    margin-top: 10px;
   }
   
   .custom-scroll::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
   
   .custom-scroll::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: rgba(0, 0, 0, 0.8);
+    /* box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3); */
+    background-color: rgba(255, 255, 255, 0.45);
   }
   
   .header {
     display: flex;
     justify-content: center;
     border-radius: 10px;
-    margin: 10px;
+    /* margin: 10px; */
   }
   
   .header h1 {
@@ -132,7 +133,7 @@ ul {
     margin: 10px;
     padding: 10px;
     height: fit-content;
-    background-color: #4e5541b3;
+    background-color: #bbb8b8;
     border-radius: 10px;
     line-height: 1.5rem;
     letter-spacing: 1px;
@@ -152,13 +153,13 @@ ul {
   }
   
   .add-btn {
-    color:#000000;
+    color:#ffffff;
     margin: 10px;
-    padding: 5px 10px;
+    padding: 10px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    width: fit-content;
+    width: 100%;
     border-radius: 5px;
     transition: all 0.2s ease-in;
     user-select: none;
@@ -166,7 +167,7 @@ ul {
   }
   
   .add-btn:hover {
-    background-color: rgb(225, 225, 225);
+    background-color: rgba(225, 225, 225, 0.5);
   }
   
   .add-btn:active {
@@ -184,10 +185,10 @@ ul {
   }
   
   .plus-sign {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-right: 5px;
     position: relative;
-    top: -3px;
+    top: -1px;
   }
   
   .add-container {
