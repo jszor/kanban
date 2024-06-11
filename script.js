@@ -23,6 +23,8 @@ let listArrays = [];
 let draggedItem;
 let dragging = false;
 let currentColumn;
+let startIndex;
+let endIndex;
 
 // Get Arrays from localStorage if available, set default values if not
 function getSavedColumns() {
@@ -124,11 +126,13 @@ function updateItem(id, column) {
 
 // Add to Column List, Reset Textbox
 function addToColumn(column) {
-  const itemText = addItems[column].textContent;
-  const selectedArray = listArrays[column];
-  selectedArray.push(itemText);
-  addItems[column].textContent = '';
-  updateDOM();
+  const itemText = addItems[column].textContent.trim();
+  if (itemText !== '') {
+    const selectedArray = listArrays[column];
+    selectedArray.push(itemText);
+    addItems[column].textContent = '';
+    updateDOM();
+  }
 }
 
 // Show Add Item Input Box
@@ -171,6 +175,7 @@ function rebuildArrays() {
 function drag(e) {
     draggedItem = e.target;
     dragging = true;
+    startIndex = Array.from(draggedItem.parentNode.children).indexOf(draggedItem);
 }
 
 // Column Allows for Item to Drop
@@ -184,6 +189,17 @@ function dragEnter(column) {
     currentColumn = column;
 }
 
+// Track the position within the column
+function dragOver(e) {
+    e.preventDefault();
+    const element = e.target;
+    if (element.classList.contains('drag-item')) {
+      endIndex = Array.from(element.parentNode.children).indexOf(element);
+    } else {
+      endIndex = -1; 
+    }
+}
+
 // Dropping Item in Column
 function drop(e) {
     e.preventDefault();
@@ -193,11 +209,31 @@ function drop(e) {
     });
     // Add item to Column
     const parent = listColumns[currentColumn];
-    parent.appendChild(draggedItem);
+    if (endIndex === -1) {
+      parent.appendChild(draggedItem);
+    } else {
+      const referenceNode = parent.children[endIndex];
+      parent.insertBefore(draggedItem, referenceNode);
+    }
     // Dragging complete
     dragging = false;
     rebuildArrays();
 }
+
+// Rebuild Arrays to reflect Drag and Drop items
+function rebuildArrays() {
+    backlogListArray = Array.from(backlogList.children).map(item => item.textContent);
+    progressListArray = Array.from(progressList.children).map(item => item.textContent);
+    completeListArray = Array.from(completeList.children).map(item => item.textContent);
+    onHoldListArray = Array.from(onHoldList.children).map(item => item.textContent);
+    updateSavedColumns();
+    updateDOM();
+}
+
+// Add event listeners
+listColumns.forEach(column => {
+  column.addEventListener('dragover', dragOver);
+});
 
 // On Load
 updateDOM();
