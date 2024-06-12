@@ -12,4 +12,4 @@ This project is a simple Kanban Board application built with HTML, CSS, and Java
 
 ## Demo
 
-The page is live on: (coming soon)...
+The page is live on: [...] 
