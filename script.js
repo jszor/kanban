@@ -205,6 +205,8 @@ function dragOver(e) {
     e.preventDefault();
     const element = e.target;
     if (element.classList.contains('drag-item')) {
+      document.querySelectorAll('.drag-item').forEach(item => item.classList.remove('drag-over'));
+      element.classList.add('drag-over');
       endIndex = Array.from(element.parentNode.children).indexOf(element);
     } else {
       endIndex = -1; 
@@ -218,6 +220,8 @@ function drop(e) {
     listColumns.forEach((column) => {
         column.classList.remove('over');
     });
+    // Remove drag-over class from all items
+    document.querySelectorAll('.drag-item').forEach(item => item.classList.remove('drag-over'));
     // Add item to Column
     const parent = listColumns[currentColumn];
     if (endIndex === -1) {
