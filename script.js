@@ -124,6 +124,9 @@ function updateItem(id, column) {
   }
 }
 
+// Variable to store the initial scroll position
+let initialScrollPosition = 0;
+
 // Add to Column List, Reset Textbox
 function addToColumn(column) {
   const itemText = addItems[column].textContent.trim();
@@ -132,6 +135,8 @@ function addToColumn(column) {
     selectedArray.push(itemText);
     addItems[column].textContent = '';
     updateDOM();
+    // scroll back to the initial scroll position
+    window.scrollTo(0, initialScrollPosition);
   }
 }
 
@@ -140,6 +145,8 @@ function showInputBox(column) {
   addBtns[column].style.visibility = 'hidden';
   saveItemBtns[column].style.display = 'flex';
   addItemContainers[column].style.display = 'flex';
+  // save the current scroll position
+  initialScrollPosition = window.scrollY;
 }
 
 // Hide Item Input Box
@@ -148,6 +155,10 @@ function hideInputBox(column) {
   saveItemBtns[column].style.display = 'none';
   addItemContainers[column].style.display = 'none';
   addToColumn(column);
+  // scroll back to the initial scroll position if not adding item
+  if (addItems[column].textContent.trim() === '') {
+    window.scrollTo(0, initialScrollPosition);
+  }
 }
 
 // Allow array to reflect Drag and Drop items
